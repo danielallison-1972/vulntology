@@ -72,184 +72,150 @@ The [**second**] **impact** of the [**second**] **action** is a [*low*] *critica
 ---
 ```json
 {
-    "$schema": "../schema/vulntology-json-schema-1.0-draft.json",
-    "vulnerability": {
-        "hasIdentity": [
+  "Vulnerability": {
+    "hasIdentity": [
+      {
+        "scheme": "http://cve.mitre.org",
+        "value": "CVE-2050-1234"
+      }
+    ],
+    "hasOriginatingProduct": {
+      "hasProductEnumeration": [
+        {
+          "scheme": "https://csrc.nist.gov/pubs/ir/7695/final",
+          "values": [
+            "cpe:2.3:a:fake:fakeproductX:1.0.0:*:*:*:*:*:*:*"
+          ]
+        }
+      ],
+      "hasCPEApplicabilityStatement": []
+    },
+    "hasScenario": [
+      {
+        "id": "b4c3887f-28dd-4226-9872-6f44803f1c4b",
+        "requiresAttackTheatre": "Remote::Internet",
+        "hasExploitedWeakness": [
+          "CWE-79"
+        ],
+        "evidencedBySource": [
+          {
+            "url": "https://www.acme.com",
+            "tag": "vendor-advisory"
+          }
+        ],
+        "affectsProduct": {
+          "hasProductEnumeration": [
             {
-                "scheme": "http://cve.mitre.org",
-                "value": "CVE-2050-1234"
+              "scheme": "https://csrc.nist.gov/pubs/ir/7695/final",
+              "values": [
+                "cpe:2.3:a:fake:fakeproductX:1.0.0:*:*:*:*:*:*:*"
+              ]
             }
-        ],
-        "hasSectorOfInterest": [
-            "Industrial Control System",
-            "Health Care"
-        ],
-        "hasOriginatingProduct": {
-            "hasEnumeration": [
-                {
-                    "scheme": "https://csrc.nist.gov/ns/cpe/2.3",
-                    "values": [
-                        "cpe:2.3:a:fake:fakeproductX:1.0.0",
-                        "cpe:2.3:a:fake:fakeproductY:1.0.0"
-                    ]
-                },
-                {
-                    "scheme": "https://nist.gov/cpe/2.2",
-                    "values": ["cpe:/a:fake"]
-                }
-            ],
-            "hasCPEApplicabilityStatement": [
-                {
-                    "operator": "AND",
-                    "children": [
-                        {
-                            "operator": "OR",
-                            "cpe_match": [
-                                {
-                                    "vulnerable": true,
-                                    "cpe23Uri": "cpe:2.3:a:fakevendor:fakeproduct:*:*:*:*:*:fake_TSW:*:*",
-                                    "versionEndIncluding": "32.0.0.114"
-                                },
-                                {
-                                    "vulnerable": true,
-                                    "cpe23Uri": "cpe:2.3:a:fakevendor:fakeproduct:*:*:*:*:*:fake_TSW:*:*",
-                                    "versionEndIncluding": "32.0.0.114"
-                                }
-                            ]
-                        },
-                        {
-                            "operator": "OR",
-                            "cpe_match": [
-                                {
-                                    "vulnerable": false,
-                                    "cpe23Uri": "cpe:2.3:o:anotherfakevendor:anotherfakeproduct:*:*:*:*:*:*:*:*"
-                                },
-                                {
-                                    "vulnerable": false,
-                                    "cpe23Uri": "cpe:2.3:o:anotherfakevendor:yetanotherfakeproduct:*:*:*:*:*:*:*:*"
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
+          ],
+          "hasCPEApplicabilityStatement": []
         },
-        "hasScenario": [
-            {
-                "id": "S1",
-                "requiresAttackTheatre": "Remote::Internet",
-                "hasExploitedWeakness": ["CWE-79"],
-                "evidencedBySource": ["https://www.thisisafakeurl.com"],
-                "affectsProduct": {
-                    "hasEnumeration": [{
-                        "scheme": "https://nist.gov/cpe/2.3",
-                        "values": ["cpe:2.3:a:fake:fakeproduct:1.0.0"]
-                        }],
-                    "hasCPEApplicabilityStatement": [
-                        {
-                            "operator": "AND",
-                            "children": [
-                                {
-                                    "operator": "OR",
-                                    "cpe_match": [
-                                        {
-                                            "vulnerable": true,
-                                            "cpe23Uri": "cpe:2.3:a:fakevendor:fakeproduct:*:*:*:*:*:fake_TSW:*:*",
-                                            "versionEndIncluding": "32.0.0.114"
-                                        },
-                                        {
-                                            "vulnerable": true,
-                                            "cpe23Uri": "cpe:2.3:a:fakevendor:fakeproduct:*:*:*:*:*:fake_TSW:*:*",
-                                            "versionEndIncluding": "32.0.0.114"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "operator": "OR",
-                                    "cpe_match": [
-                                        {
-                                            "vulnerable": false,
-                                            "cpe23Uri": "cpe:2.3:o:anotherfakevendor:anotherfakeproduct:*:*:*:*:*:*:*:*"
-                                        },
-                                        {
-                                            "vulnerable": false,
-                                            "cpe23Uri": "cpe:2.3:o:anotherfakevendor:yetanotherfakeproduct:*:*:*:*:*:*:*:*"
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                },
-                "blockedByBarrier": [
-                    {
-                        "id": "S1B1",
-                        "hasBarrierType": "Authentication/Authorization::Impersonation::Social Engineering",
-                        "hasEngineeringMethod": ["MaliciousLink"],
-                        "neededPrivileges": "User",
-                        "relatesToContext": "Application"
-                    },
-                    {
-                        "id": "S1B2",
-                        "hasBarrierType": "Authentication/Authorization::Privileges Required",
-                        "neededPrivileges": "User",
-                        "relatesToContext": "Application"
-                    }
-                ],
-                "hasAction": [
-                    {
-                        "id": "S1A1",
-                        "hasEntityRole": "Security Authority::Primary",
-                        "affectsContext": "Application::Web Server",
-                        "hasImpactMethod": ["Code Execution"],
-                        "resultsInImpact": [
-                            {
-                                "id": "S1A1I1",
-                                "hasLogicalImpact": "Write-Direct",
-                                "hasScope": "Limited",
-                                "hasCriticality": "Low"
-                            }
-                        ]
-                    },
-                    {
-                        "id": "S1A2",
-                        "hasEntityRole": "Security Authority::Secondary",
-                        "affectsContext": "Application",
-                        "hasImpactMethod": ["Code Execution"],
-                        "resultsInImpact": [
-                            {
-                                "id": "S1A2I1",
-                                "hasLogicalImpact": "Write-Direct",
-                                "hasScope": "Limited",
-                                "hasCriticality": "Low"
-                            },
-                            {
-                                "id": "S1A2I2",
-                                "hasLogicalImpact": "Read-Direct",
-                                "hasScope": "Limited",
-                                "hasCriticality": "Low",
-                                "hasLocation": "Memory"
-                            },
-                            {
-                                "$comment": "This is for testing constraints, and is not for cross-site scripting",
-                                "id": "S1A2I3",
-                                "hasLogicalImpact": "Privilege Escalation",
-                                "hasScope": "Limited",
-                                "hasCriticality": "Low",
-                                "gainedPrivileges": "Administrator"
-                            },
-                            {
-                                "$comment": "This is for testing constraints, and is not for cross-site scripting",
-                                "id": "S1A2I4",
-                                "hasPhysicalImpact": "Physical Resource Consumption",
-                                "hasScope": "Limited",
-                                "hasCriticality": "Low"
-                            }
-                        ]
-                    }
-                ]
-            }
-        ]
-    }
+        "hasAction": [
+          {
+            "id": "bd095f8b-b83b-49dc-a2f0-79fd47927147",
+            "hasImpactMethod": [
+              {
+                "hasImpactMethodType": "Code Execution"
+              }
+            ],
+            "affectsContext": "Application::Web Server",
+            "hasEntityRole": "Security Authority::Primary",
+            "resultsInImpact": [
+              {
+                "id": "ceb33a58-68cc-4edd-9a5d-0f3c3009ed32",
+                "hasCriticality": "Low",
+                "hasScope": "Limited",
+                "hasPhysicalImpact": "Physical Resource Consumption"
+              },
+              {
+                "id": "17238185-e8ca-4ec7-9db3-bea8b9a2dcde",
+                "hasCriticality": "Low",
+                "hasScope": "Limited",
+                "hasLogicalImpact": "Write Direct",
+                "hasLocation": "File System"
+              }
+            ],
+            "doesNotResultInImpact": [
+              {
+                "id": "25395ff2-19a0-4545-a940-44d0b2a2e0b1",
+                "hasCriticality": "Low",
+                "hasScope": "Limited",
+                "hasLogicalImpact": "Service Interrupt::Hang",
+                "hasLocation": "Network Traffic"
+              },
+              {
+                "id": "220d45a1-0086-41c2-b08e-62080a39127d",
+                "hasCriticality": "Low",
+                "hasScope": "Limited",
+                "hasPhysicalImpact": "Human Injury"
+              }
+            ],
+            "name": "vulnEx1_S1_A1"
+          },
+          {
+            "id": "05583e58-eb45-494a-867f-4230e0fa464a",
+            "hasImpactMethod": [
+              {
+                "hasImpactMethodType": "Code Execution"
+              }
+            ],
+            "affectsContext": "Application",
+            "hasEntityRole": "Security Authority::Secondary",
+            "resultsInImpact": [
+              {
+                "id": "702f3005-5de6-468f-afd1-c3e338cee6fc",
+                "hasCriticality": "Low",
+                "hasScope": "Limited",
+                "hasLogicalImpact": "Read Direct",
+                "hasLocation": "Memory"
+              },
+              {
+                "id": "dc1d7268-2425-4a36-8a81-f80dbbc4d66d",
+                "hasCriticality": "Low",
+                "hasScope": "Limited",
+                "hasPhysicalImpact": "Physical Resource Consumption"
+              }
+            ],
+            "doesNotResultInImpact": [
+              {
+                "id": "8443ffa0-f0ed-4866-a91d-5d84160973e2",
+                "hasCriticality": "Low",
+                "hasScope": "Limited",
+                "hasLogicalImpact": "Service Interrupt::Hang",
+                "hasLocation": "Network Traffic"
+              },
+              {
+                "id": "1456f0a2-46d9-46ca-9189-4f55816e553e",
+                "hasCriticality": "Low",
+                "hasScope": "Limited",
+                "hasPhysicalImpact": "Human Injury"
+              }
+            ],
+            "name": "vulnEx1_S1_A2"
+          }
+        ],
+        "blockedByBarrier": [
+          {
+            "id": "11741bd2-c5ee-47e8-bd46-ffaf908a5f1c",
+            "hasBarrierType": "Authentication/Authorization::Impersonation::Social Engineering",
+            "hasEngineeringMethod": [
+              "Malicious Link"
+            ],
+            "hasNeededPrivilege": "User",
+            "relatesToContext": "Application"
+          }
+        ],
+        "name": "vulnEx1_S1"
+      }
+    ],
+    "hasSectorOfInterest": [
+      "Industrial Control System",
+      "Health Care"
+    ]
+  }
 }
 ```
