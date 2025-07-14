@@ -46,7 +46,7 @@ jobs:
     - id: checkout_latest_workflow
       name: Checkout Latest
       if: (github.event_name == 'workflow_dispatch' && github.event.inputs.commit_resources == 'true') || (github.event_name == 'push' && inputs.commit_resources == true)
-      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+      uses: actions/checkout@4.2.2
       with:
         token: ${{ secrets.GITHUB_TOKEN  }}
         submodules: recursive
@@ -73,7 +73,7 @@ jobs:
         hugo-version: '${{ steps.hugo-version.outputs.HUGO_VERSION }}'
         extended: true
     - name: Set up NodeJS
-      uses: actions/setup-node@b39b52d1213e96004bfcb1c61a8a6fa8ab84f3e8
+      uses: actions/setup-node@4.4.0
       with:
         node-version-file: '.github/workflows/config/.nvmrc'
         cache: 'npm'
@@ -117,7 +117,7 @@ jobs:
         retention-days: 5
     - id: linkchecker
       name: Link Checker
-      uses: lycheeverse/lychee-action@c3089c702fbb949e3f7a8122be0c33c017904f9b
+      uses: lycheeverse/lychee-action@2.4.1
       with:
         args: --exclude-file .github/workflows/config/.lycheeignore --verbose --no-progress --accept 200,206,429 './website/public/**/*.html' --remap "https://pages.nist.gov/vulntology/ file://${GITHUB_WORKSPACE}/website/public/" --exclude-mail
         format: markdown
